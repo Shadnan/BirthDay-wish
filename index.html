@@ -9,21 +9,28 @@
         :root { --primary: #ff4d6d; --bg: #fff0f3; }
         body { margin: 0; padding: 0; background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%); font-family: 'Poppins', sans-serif; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
 
-        /* Floating Wishes in Background - Improved to prevent clutter */
+        /* Floating Wishes - Mobile Optimized */
         .wish-bubble {
-            position: absolute; background: rgba(255, 255, 255, 0.7);
-            padding: 6px 14px; border-radius: 20px; font-size: 0.75rem;
+            position: absolute; background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px; border-radius: 20px; font-size: 0.7rem;
             color: #ad1457; font-weight: 600; white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.1);
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.1);
             animation: floatAround var(--t) ease-in-out infinite; z-index: 1;
             pointer-events: none;
         }
-        @keyframes floatAround {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(15px, -15px) rotate(3deg); }
+        
+        @media (max-width: 600px) {
+            .wish-bubble { font-size: 0.6rem; padding: 4px 8px; }
+            .card { width: 85% !important; padding: 15px !important; }
+            h1 { font-size: 1.3rem !important; }
         }
 
-        /* Main Compact Card */
+        @keyframes floatAround {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10px, -10px) rotate(3deg); }
+        }
+
+        /* Main Card */
         .card {
             background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px);
             padding: 25px; border-radius: 30px; box-shadow: 0 10px 40px rgba(255, 77, 109, 0.3);
@@ -32,21 +39,21 @@
         }
         @keyframes cardAppear { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        .profile-frame { width: 110px; height: 110px; margin: 5px auto; border-radius: 50%; border: 4px solid white; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .profile-frame { width: 100px; height: 100px; margin: 5px auto; border-radius: 50%; border: 4px solid white; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .profile-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        h1 { font-family: 'Dancing Script', cursive; color: #ad1457; font-size: 1.6rem; margin: 10px 0; }
-        .message-box { font-size: 0.82rem; color: #6d4c41; font-weight: 600; line-height: 1.5; margin-top: 10px; opacity: 0; transition: 1.5s ease-out; }
+        h1 { font-family: 'Dancing Script', cursive; color: #ad1457; font-size: 1.5rem; margin: 8px 0; }
+        .message-box { font-size: 0.8rem; color: #6d4c41; font-weight: 600; line-height: 1.5; margin-top: 8px; opacity: 0; transition: 1.5s ease-out; }
         .message-box.show { opacity: 1; }
 
-        /* Virtual Cake */
-        .cake-area { margin-top: 15px; font-size: 40px; cursor: pointer; position: relative; display: inline-block; }
-        .candle-flame { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); color: orange; font-size: 15px; animation: flicker 0.5s infinite; }
+        /* Cake Section */
+        .cake-area { margin-top: 10px; font-size: 35px; cursor: pointer; position: relative; display: inline-block; }
+        .candle-flame { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); color: orange; font-size: 12px; animation: flicker 0.5s infinite; }
         @keyframes flicker { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; transform: translateX(-50%) scale(1.3); } }
 
         /* Overlay */
         #overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); display: flex; justify-content: center; align-items: center; z-index: 100; transition: 0.8s ease; }
-        .gift-box { font-size: 85px; cursor: pointer; animation: giftBounce 1s infinite; }
+        .gift-box { font-size: 70px; cursor: pointer; animation: giftBounce 1s infinite; }
         @keyframes giftBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
         .particle { position: fixed; z-index: 5; pointer-events: none; }
@@ -59,7 +66,7 @@
     <div id="overlay">
         <div style="text-align: center;">
             <div class="gift-box" onclick="openGift()">🎁</div>
-            <p style="color:white; font-family: 'Dancing Script', cursive; font-size: 1.6rem; margin-top: 15px;">Happy Birthday, Mim! ✨</p>
+            <p style="color:white; font-family: 'Dancing Script', cursive; font-size: 1.4rem; margin-top: 15px;">For my favorite person, Mim! ✨</p>
         </div>
     </div>
 
@@ -68,34 +75,37 @@
     </audio>
 
     <div class="card" id="mainCard">
-        <div style="font-size: 35px; margin-bottom: 5px;">🐱🌹🐦</div>
+        <div style="font-size: 30px; margin-bottom: 5px;">🐱🌹🐦</div>
         <div class="profile-frame">
             <img src="mim.jpg" alt="Mim">
         </div>
         <h1>Happy Birthday My Love! ❤️</h1>
         <div class="message-box" id="msgBox">
-            তুমি আমার জীবনের সবচেয়ে সুন্দর পাওয়া। তোমার ওই মায়াবী হাসি আর সহজ সরল মনটা আমাকে বারবার মুগ্ধ করে। সারাজীবন এভাবেই আমার কিউট বিড়ালছানা হয়ে থেকো। অনেক ভালোবাসি তোমাকে! ✨
+            তোমার উপস্থিতিতে আমার পৃথিবীটা অনেক বেশি রঙিন। তোমার ওই মিষ্টি হাসি আমার সব ক্লান্তি দূর করে দেয়। আমার লক্ষ্মী বিড়াল হয়ে সারাজীবন এভাবেই পাশে থেকো। আজকের এই বিশেষ দিনে তোমার জন্য রইল অফুরন্ত ভালোবাসা। শুভ জন্মদিন প্রিয়! ❤️✨
         </div>
         
         <div class="cake-area" onclick="blowCandle()">
             <span id="flame" class="candle-flame">🔥</span>
             🎂
-            <p style="font-size: 0.6rem; color: #ff4d6d; margin: 0; font-weight: bold;">(Click to blow!)</p>
+            <p style="font-size: 0.55rem; color: #ff4d6d; margin: 0; font-weight: bold;">(Click to blow!)</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        // Updated wishes: Removed Bestie, Added Lokkhi Biral & Moyna Pakhi
         const birthdayWishes = ["লক্ষ্মী বিড়াল 🐱", "ময়না পাখি 🐦", "My Queen 👑", "Stay Happy! 🌟", "Always Smile 😊", "Stay Blessed ✨", "Love You Forever ❤️", "Be Healthy 🍎"];
         let rainActive = false;
 
         function createWishBubbles() {
             const container = document.getElementById('wish-container');
-            // Using a simple grid approach to avoid overlap
-            const positions = [
-                {t: 10, l: 10}, {t: 15, l: 70}, {t: 75, l: 15}, {t: 80, l: 75},
-                {t: 40, l: 5}, {t: 45, l: 80}, {t: 10, l: 40}, {t: 85, l: 45}
+            // Fixed positions for mobile safety (avoiding the center where card is)
+            const isMobile = window.innerWidth < 600;
+            const positions = isMobile ? [
+                {t: 5, l: 5}, {t: 5, l: 65}, {t: 85, l: 5}, {t: 85, l: 65},
+                {t: 20, l: 2}, {t: 20, l: 75}, {t: 70, l: 2}, {t: 70, l: 75}
+            ] : [
+                {t: 10, l: 10}, {t: 10, l: 80}, {t: 80, l: 10}, {t: 80, l: 80},
+                {t: 45, l: 5}, {t: 45, l: 85}, {t: 20, l: 45}, {t: 85, l: 45}
             ];
 
             positions.forEach((pos, idx) => {
@@ -120,7 +130,7 @@
                 setTimeout(() => document.getElementById('msgBox').classList.add('show'), 500);
                 rainActive = true;
                 startContinuousRain(); 
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }, 800);
         }
 
@@ -128,8 +138,7 @@
             const flame = document.getElementById('flame');
             if(flame.style.display !== 'none') {
                 flame.style.display = 'none';
-                confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 }, colors: ['#ff4d6d', '#ffffff', '#ffd700'] });
-                
+                confetti({ particleCount: 150, spread: 100, origin: { y: 0.8 } });
                 const randomWish = birthdayWishes[Math.floor(Math.random()*birthdayWishes.length)];
                 alert("Mim says: 'Thank You!' ❤️\nToday's Special Wish: " + randomWish);
             }
@@ -138,7 +147,7 @@
         function startContinuousRain() {
             if(!rainActive) return;
             createParticle();
-            setTimeout(startContinuousRain, 350); 
+            setTimeout(startContinuousRain, 400); 
         }
 
         function createParticle() {
@@ -148,9 +157,9 @@
             p.innerHTML = choices[Math.floor(Math.random() * choices.length)];
             p.style.left = Math.random() * 100 + 'vw';
             p.style.top = '-50px';
-            p.style.fontSize = (Math.random() * 20 + 22) + 'px';
+            p.style.fontSize = (Math.random() * 15 + 18) + 'px';
             document.body.appendChild(p);
-            const anim = p.animate([{ transform: 'translateY(0) rotate(0deg)', opacity: 1 }, { transform: `translateY(110vh) translateX(${(Math.random()-0.5)*200}px) rotate(360deg)`, opacity: 0 }], { duration: Math.random() * 3000 + 4000, easing: 'linear' });
+            const anim = p.animate([{ transform: 'translateY(0) rotate(0deg)', opacity: 1 }, { transform: `translateY(110vh) translateX(${(Math.random()-0.5)*150}px) rotate(360deg)`, opacity: 0 }], { duration: Math.random() * 3000 + 3000, easing: 'linear' });
             anim.onfinish = () => p.remove();
         }
 
@@ -159,7 +168,7 @@
             h.innerHTML = '❤️';
             h.style.position = 'fixed'; h.style.left = (e.clientX - 10) + 'px'; h.style.top = (e.clientY - 10) + 'px'; h.style.zIndex = '1000';
             document.body.appendChild(h);
-            h.animate([{ transform: 'scale(1) translateY(0)', opacity: 1 }, { transform: 'scale(2.5) translateY(-120px)', opacity: 0 }], { duration: 1000 }).onfinish = () => h.remove();
+            h.animate([{ transform: 'scale(1) translateY(0)', opacity: 1 }, { transform: 'scale(2) translateY(-100px)', opacity: 0 }], { duration: 800 }).onfinish = () => h.remove();
         }
     </script>
 </body>
