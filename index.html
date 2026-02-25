@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        /* Floating Background */
+        .bg-element {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.4);
+            font-size: 20px;
+            animation: move linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Compact Card */
+        .container {
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            width: 285px; 
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #c2185b;
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+        }
+
+        .nickname {
+            color: #ec407a;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .gift-box {
+            font-size: 70px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        #secret-content {
+            display: none;
+            animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .cat-box {
+            position: relative;
+            display: inline-block;
+        }
+
+        .cat-emoji {
+            font-size: 55px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mim-photo {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.2);
+            object-fit: cover;
+            margin: 10px 0;
+        }
+
+        .love-msg {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #ad1457;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .sub-msg {
+            font-size: 0.8rem;
+            color: #6d4c41;
+            margin-top: 8px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .particle {
+            position: fixed;
+            z-index: 999;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="intro">
+            <h1>Happy Birthday!</h1>
+            <div class="nickname">Sayma Jannat Mim 🐾</div>
+            <p style="color: #880e4f; font-size: 0.85rem;">তোমার জন্য এক আকাশ ভালোবাসা!</p>
+            <div class="gift-box" onclick="revealSurprise()">🎁</div>
+            <p style="font-size: 0.7rem; color: #d81b60; margin-top: 10px;">(সারপ্রাইজটা খুলে দেখো লক্ষ্মীটি! 🐱)</p>
+        </div>
+
+        <div id="secret-content">
+            <div class="cat-box">
+                <span class="cat-emoji">🐱🌹🕊️</span>
+            </div>
+            <br>
+            <img src="mim.jpg" alt="Sayma Jannat Mim" class="mim-photo">
+            <div class="love-msg">Happy Birthday to my Love! ❤️</div>
+            <p class="sub-msg">
+                তুমি আমার জীবনের সবচেয়ে সুন্দর পাওয়া। তোমার ওই মায়াবী হাসি আর সহজ সরল মনটা আমাকে বারবার মুগ্ধ করে। সারাজীবন এভাবেই আমার কিউট বিড়ালছানা হয়ে থেকো। অনেক ভালোবাসি তোমাকে! ✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Background elements
+        const bgElements = ['🐾', '❤️', '🎈', '🍫', '🐦', '🌸'];
+        for (let i = 0; i < 18; i++) {
+            createBgElement();
+        }
+
+        function createBgElement() {
+            const el = document.createElement('div');
+            el.className = 'bg-element';
+            el.innerHTML = bgElements[Math.floor(Math.random() * bgElements.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 8 + 4) + 's';
+            el.style.fontSize = '18px';
+            document.body.appendChild(el);
+        }
+
+        function revealSurprise() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('secret-content').style.display = 'block';
+            
+            // Rich Animation with Cat, Bird, Chocolate, Rose, Balloon
+            for(let i=0; i<120; i++) {
+                setTimeout(createParticle, i * 25);
+            }
+        }
+
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const choices = ['🐱', '🌹', '❤️', '🐾', '🎈', '🍫', '🐦', '🌸', '✨'];
+            p.innerHTML = choices[Math.floor(Math.random() * choices.length)];
+            
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = '-30px';
+            p.style.fontSize = (Math.random() * 15 + 20) + 'px';
+            document.body.appendChild(p);
+
+            const fallDuration = Math.random() * 3000 + 2500;
+            const sideMovement = (Math.random() - 0.5) * 350;
+
+            const anim = p.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(110vh) translateX(${sideMovement}px) rotate(720deg)`, opacity: 0 }
+            ], {
+                duration: fallDuration,
+                easing: 'linear'
+            });
+
+            anim.onfinish = () => p.remove();
+        }
+    </script>
+</body>
+</html>
